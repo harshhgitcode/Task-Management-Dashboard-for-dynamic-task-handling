@@ -1,31 +1,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>Task Management Dashboard</title>
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<title>Smart Task Dashboard</title>
+<link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-<div class="container">
-    <h1>Task Management Dashboard</h1>
+<div class="dashboard">
 
-    <form id="taskForm">
-        <input type="text" id="taskInput" placeholder="Enter Task" required>
+<h1>Smart Task Dashboard</h1>
 
-        <select id="priority">
-            <option value="Low">Low Priority</option>
-            <option value="Medium">Medium Priority</option>
-            <option value="High">High Priority</option>
-        </select>
+<div class="task-input">
+<input type="text" id="taskText" placeholder="Enter your task...">
 
-        <button type="submit">Add Task</button>
-    </form>
+<select id="taskPriority">
+<option value="low">Low</option>
+<option value="medium">Medium</option>
+<option value="high">High</option>
+</select>
 
-    <ul id="taskList"></ul>
+<button id="addTask">Add Task</button>
+</div>
+
+<div class="task-stats">
+Total Tasks: <span id="total">0</span> |
+Completed: <span id="completed">0</span>
+</div>
+
+<ul id="taskList"></ul>
+
 </div>
 
 <script src="script.js"></script>
+
 </body>
 </html>
