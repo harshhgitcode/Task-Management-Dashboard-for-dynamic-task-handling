@@ -1,19 +1,62 @@
-document.getElementById("taskForm").addEventListener("submit", function(e) {
+body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+}
 
-    e.preventDefault();
+.container{
+    width: 400px;
+    margin: auto;
+    margin-top: 50px;
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+}
 
-    let taskInput = document.getElementById("taskInput").value;
-    let priority = document.getElementById("priority").value;
+h1{
+    text-align: center;
+}
 
-    let li = document.createElement("li");
+form{
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
 
-    li.innerHTML = taskInput + " (" + priority + ")";
+input, select, button{
+    padding: 8px;
+}
 
-    li.addEventListener("click", function() {
-        li.classList.toggle("completed");
-    });
+button{
+    background-color: #28a745;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
 
-    document.getElementById("taskList").appendChild(li);
+button:hover{
+    background-color: #218838;
+}
 
-    document.getElementById("taskForm").reset();
-});
+ul{
+    list-style: none;
+    padding: 0;
+}
+
+li{
+    padding: 10px;
+    background: #eee;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.completed{
+    text-decoration: line-through;
+    color: gray;
+}
+
+.priority{
+    font-size: 12px;
+    margin-left: 10px;
+}
