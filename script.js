@@ -1,62 +1,80 @@
-body{
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+const taskText = document.getElementById("taskText");
+const taskPriority = document.getElementById("taskPriority");
+const addTask = document.getElementById("addTask");
+const taskList = document.getElementById("taskList");
+
+const total = document.getElementById("total");
+const completed = document.getElementById("completed");
+
+let totalTasks = 0;
+let completedTasks = 0;
+
+addTask.addEventListener("click", function(){
+
+if(taskText.value === "")
+{
+alert("Please enter a task");
+return;
 }
 
-.container{
-    width: 400px;
-    margin: auto;
-    margin-top: 50px;
-    background: white;
-    padding: 20px;
-    border-radius: 8px;
+const li = document.createElement("li");
+li.classList.add(taskPriority.value);
+
+const taskInfo = document.createElement("div");
+taskInfo.classList.add("task-info");
+taskInfo.innerHTML = "<strong>"+taskText.value+"</strong><small>Priority: "+taskPriority.value+"</small>";
+
+const btnGroup = document.createElement("div");
+btnGroup.classList.add("buttons");
+
+const completeBtn = document.createElement("button");
+completeBtn.innerText = "✓";
+completeBtn.classList.add("completeBtn");
+
+const deleteBtn = document.createElement("button");
+deleteBtn.innerText = "✕";
+deleteBtn.classList.add("deleteBtn");
+
+completeBtn.onclick = function(){
+
+if(!li.classList.contains("completed"))
+{
+li.classList.add("completed");
+completedTasks++;
+completed.innerText = completedTasks;
+}
+else
+{
+li.classList.remove("completed");
+completedTasks--;
+completed.innerText = completedTasks;
 }
 
-h1{
-    text-align: center;
 }
 
-form{
-    display: flex;
-    gap: 10px;
-    margin-bottom: 20px;
+deleteBtn.onclick = function(){
+taskList.removeChild(li);
+totalTasks--;
+total.innerText = totalTasks;
+
+if(li.classList.contains("completed"))
+{
+completedTasks--;
+completed.innerText = completedTasks;
+}
 }
 
-input, select, button{
-    padding: 8px;
-}
+btnGroup.appendChild(completeBtn);
+btnGroup.appendChild(deleteBtn);
 
-button{
-    background-color: #28a745;
-    color: white;
-    border: none;
-    cursor: pointer;
-}
+li.appendChild(taskInfo);
+li.appendChild(btnGroup);
 
-button:hover{
-    background-color: #218838;
-}
+taskList.appendChild(li);
 
-ul{
-    list-style: none;
-    padding: 0;
-}
+totalTasks++;
+total.innerText = totalTasks;
 
-li{
-    padding: 10px;
-    background: #eee;
-    margin-bottom: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
+taskText.value="";
 
-.completed{
-    text-decoration: line-through;
-    color: gray;
-}
-
-.priority{
-    font-size: 12px;
-    margin-left: 10px;
-}
+});
